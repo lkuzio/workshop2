@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
+import java.util.List;
 
 /**
  * Created by Luke on 2017-04-02.
@@ -32,6 +33,9 @@ public class Person {
     private Gender gender;
 
     private Boolean active;
+
+    @OneToMany(mappedBy = "userId")
+    private List<Address> addresses;
 
     public Person() {
     }
@@ -92,5 +96,13 @@ public class Person {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 }

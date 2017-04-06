@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Luke on 2017-04-02.
  */
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = AddressMapper.class)
 public interface PersonMapper {
 
     PersonMapper INSTANCE = Mappers.getMapper(PersonMapper.class);
