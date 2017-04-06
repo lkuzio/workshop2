@@ -1,5 +1,6 @@
 package com.pgs.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotNull;
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * Created by Luke on 2017-04-02.
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PersonDTO {
 
     private Long id;
@@ -21,7 +23,7 @@ public class PersonDTO {
     @NotNull
     private String gender;
     private Boolean enabled;
-    private List<AddressDTO> address;
+    private List<AddressDTO> addresses;
 
     public Long getId() {
         return id;
@@ -71,11 +73,11 @@ public class PersonDTO {
         this.enabled = enabled;
     }
 
-    public List<AddressDTO> getAddress() {
-        return address;
+    public List<AddressDTO> getAddresses() {
+        return addresses;
     }
 
-    public void setAddress(List<AddressDTO> address) {
-        this.address = address;
+    public void setAddresses(List<AddressDTO> addresses) {
+        this.addresses = addresses;
     }
 }

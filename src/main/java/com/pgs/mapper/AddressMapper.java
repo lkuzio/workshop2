@@ -11,7 +11,7 @@ import org.mapstruct.Mapper;
 public interface AddressMapper {
 
 
-    AddressDTO toDto(Address address);
+    AddressDTO toDTO(Address address);
 
-    Address doEntity(AddressDTO dto);
+    Address toEntity(AddressDTO dto);
 }

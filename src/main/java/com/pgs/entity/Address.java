@@ -22,6 +22,9 @@ public class Address {
     @Column
     private String street;
 
+    @Column(name = "personId")
+    private Long personId;
+
     public Long getId() {
         return id;
     }
@@ -52,5 +55,13 @@ public class Address {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    public Long getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(Long personId) {
+        this.personId = personId;
     }
 }

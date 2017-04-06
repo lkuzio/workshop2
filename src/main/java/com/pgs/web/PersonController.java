@@ -5,6 +5,7 @@ import com.pgs.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -30,7 +31,7 @@ public class PersonController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void add(@RequestBody PersonDTO personDTO) {
+    public void add(@Valid @RequestBody PersonDTO personDTO) {
         personService.add(personDTO);
     }
 

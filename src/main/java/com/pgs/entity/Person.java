@@ -1,6 +1,7 @@
 package com.pgs.entity;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -29,12 +30,13 @@ public class Person {
     @NotNull
     private Date dateOfBirth;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
     private Boolean active;
 
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "personId", fetch = FetchType.EAGER)
     private List<Address> addresses;
 
     public Person() {
