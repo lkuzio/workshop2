@@ -1,6 +1,7 @@
 package com.pgs.web;
 
 import com.pgs.dto.ErrorDTO;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -33,5 +34,11 @@ public class ErrorHandler {
         errorDTO.setMessage("Validation error");
         errorDTO.setDetails(sb.toString());
         return errorDTO;
+    }
+
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public void handleNotExitedRecord(EmptyResultDataAccessException ex){
+
     }
 }

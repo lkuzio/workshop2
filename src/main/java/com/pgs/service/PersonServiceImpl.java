@@ -9,6 +9,7 @@ import com.pgs.mapper.PersonMapper;
 import com.pgs.repository.AddressRepository;
 import com.pgs.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -39,7 +40,11 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public PersonDTO findById(@PathVariable("id") Long id) {
-        return personMapper.toDTO(personRepository.findById(id));
+        Person person = personRepository.findById(id);
+        if (person != null) {
+            return personMapper.toDTO(person);
+        }
+        throw new EmptyResultDataAccessException(1);
     }
 
     @Override
@@ -60,5 +65,13 @@ public class PersonServiceImpl implements PersonService {
         personRepository.delete(id);
     }
 
-
+    @Override
+    public void update(PersonDTO personDTO) {
+        Person existed = personRepository.findById(personDTO.getId());
+        if (existed != null) {
+            personRepository.save(personMapper.toEntity(personDTO));
+        } else {
+            throw new EmptyResultDataAccessException(1);
+        }
+    }
 }

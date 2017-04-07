@@ -1,7 +1,5 @@
 package com.pgs.entity;
 
-
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -36,7 +34,7 @@ public class Person {
 
     private Boolean active;
 
-    @OneToMany(mappedBy = "personId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "personId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Address> addresses;
 
     public Person() {

@@ -2,6 +2,7 @@ package com.pgs.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
@@ -14,11 +15,13 @@ import java.util.List;
 public class PersonDTO {
 
     private Long id;
+    @NotNull(message = "First name cannot be null")
     @Length(min = 2)
     private String firstName;
     @Length(min = 2)
     private String lastName;
     @NotNull
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date birthday;
     @NotNull
     private String gender;
